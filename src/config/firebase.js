@@ -13,7 +13,7 @@ const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
 // 로그인
-export function login() {
+export async function login() {
   signInWithPopup(auth, provider) //
     .then((result) => {
       const user = result.user;
