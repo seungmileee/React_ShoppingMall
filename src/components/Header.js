@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillShop, AiOutlineShoppingCart } from "react-icons/ai";
+import Button from "./ui/Button";
 
 function Header() {
   const navigate = useNavigate();
@@ -20,9 +21,7 @@ function Header() {
         <button onClick={() => navigate("/cart")} className="mr-5 text-3xl">
           <AiOutlineShoppingCart />
         </button>
-        <button className="bg-orange-400 text-white px-3 py-1.5 border-solid border-2 border-orange-400 ease-in duration-200 hover:bg-white hover:text-orange-400">
-          Login
-        </button>
+        <Button text={"Login"} />
       </section>
     </header>
   );
