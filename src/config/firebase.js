@@ -1,5 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,13 +17,18 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
 
-// 로그인
+// 구글 ouath 로그인
 export async function login() {
   signInWithPopup(auth, provider) //
     .then((result) => {
       const user = result.user;
-      console.log(user);
+      // console.log(user);
       return user;
     })
     .catch((error) => console.log(error));
+}
+
+// 구글 oauth 로그아웃
+export async function logout() {
+  signOut(auth).catch((error) => console.log(error));
 }

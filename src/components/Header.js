@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillShop, AiOutlineShoppingCart } from "react-icons/ai";
 import Button from "./ui/Button";
-import { login } from "../config/firebase";
+import { login, logout } from "../config/firebase";
 
 function Header() {
   // 로그인 후 user가 리턴되면 상태에 user가 담기도록
@@ -10,6 +10,10 @@ function Header() {
 
   const handleLogin = () => {
     login().then((user) => setUser(user));
+  };
+
+  const handleLogout = () => {
+    logout().then(() => setUser(null));
   };
 
   const navigate = useNavigate();
@@ -30,7 +34,7 @@ function Header() {
           <AiOutlineShoppingCart />
         </button>
         {!user && <Button text={"Login"} onClick={handleLogin} />}
-        {user && <Button text={"Logout"} />}
+        {user && <Button text={"Logout"} onClick={handleLogout} />}
       </section>
     </header>
   );
