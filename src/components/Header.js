@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillShop, AiOutlineShoppingCart } from "react-icons/ai";
 import Button from "./ui/Button";
+import { login } from "../config/firebase";
 
 function Header() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Header() {
         <button onClick={() => navigate("/cart")} className="mr-5 text-3xl">
           <AiOutlineShoppingCart />
         </button>
-        <Button text={"Login"} />
+        <Button text={"Login"} onClick={login} />
       </section>
     </header>
   );

@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,4 +11,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
-const database = getDatabase(app);
+
+// 로그인
+export function login() {
+  signInWithPopup(auth, provider) //
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+      return user;
+    })
+    .catch((error) => console.log(error));
+}
