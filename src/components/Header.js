@@ -20,10 +20,7 @@ function Header() {
         <button onClick={() => navigate("/cart")} className="mr-5 text-3xl">
           <AiOutlineShoppingCart />
         </button>
-        <button
-          onClick={() => navigate("/signin")}
-          className="bg-orange-400 text-white px-3 py-1.5 border-solid border-2 border-orange-400 ease-in duration-200 hover:bg-white hover:text-orange-400"
-        >
+        <button className="bg-orange-400 text-white px-3 py-1.5 border-solid border-2 border-orange-400 ease-in duration-200 hover:bg-white hover:text-orange-400">
           Login
         </button>
       </section>
