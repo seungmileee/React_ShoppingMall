@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AiFillShop, AiOutlineShoppingCart } from "react-icons/ai";
 import Button from "./ui/Button";
 import { login, logout, userStateChange } from "../config/firebase";
+import User from "./User";
 
 function Header() {
   // 로그인 후 user가 리턴되면 상태에 user가 담기도록
@@ -32,9 +33,12 @@ function Header() {
         <button onClick={() => navigate("/products")} className="mr-5">
           Products
         </button>
-        <button onClick={() => navigate("/cart")} className="mr-5 text-3xl">
-          <AiOutlineShoppingCart />
-        </button>
+        {user && (
+          <button onClick={() => navigate("/cart")} className="mr-5 text-3xl">
+            <AiOutlineShoppingCart />
+          </button>
+        )}
+        {user && <User user={user} />}
         {!user && <Button text={"Login"} onClick={login} />}
         {user && <Button text={"Logout"} onClick={logout} />}
       </section>
