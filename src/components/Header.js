@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillShop, AiOutlineShoppingCart } from "react-icons/ai";
 import Button from "./ui/Button";
-import { login, logout } from "../config/firebase";
+import { login, logout, userStateChange } from "../config/firebase";
 
 function Header() {
   // 로그인 후 user가 리턴되면 상태에 user가 담기도록
   const [user, setUser] = useState();
 
-  const handleLogin = () => {
-    login().then((user) => setUser(user));
-  };
+  useEffect(() => {
+    // 로그인 하면 유저 정보가 user 통해서 전달, 로그아웃하면 null이 user 통해서 전달됨
+    userStateChange((user) => {
+      console.log(user);
+      setUser(user);
+    });
+  }, []);
 
-  const handleLogout = () => {
-    logout().then(() => setUser(null));
-  };
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -33,8 +35,8 @@ function Header() {
         <button onClick={() => navigate("/cart")} className="mr-5 text-3xl">
           <AiOutlineShoppingCart />
         </button>
-        {!user && <Button text={"Login"} onClick={handleLogin} />}
-        {user && <Button text={"Logout"} onClick={handleLogout} />}
+        {!user && <Button text={"Login"} onClick={login} />}
+        {user && <Button text={"Logout"} onClick={logout} />}
       </section>
     </header>
   );
